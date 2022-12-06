@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+    <h3>Работодатели</h3>
+
+    {% if employers %}
+        {% for emp in employers %}
+        <img src="{{ emp.employer_photo }}" alt="" style="scale: 30%">
+        <h4>{{ emp.employer_name }}</h4>
+        <h5>{{ emp.employer_city }}, {{ emp.employer_state }}</h5>
+        <a href="{% url 'employer details' emp.pk %}">
+        <button class="btn btn-primary btn-lg">Детайли</button>
+        </a>
+        {% endfor %}
+    {% else %}
+        <h5>В момента няма добавени работодатели.</h5>
+    {% endif %}
+    {% if user.is_superuser %}
+        <a href="{% url 'add employer' %}">
+        <button class="btn btn-primary btn-lg">Добави работодател</button>
+        </a>
+    {% endif %}
+
+{% endblock %}

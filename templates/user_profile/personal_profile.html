@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load placeholders %}
+
+{% block content %}
+
+    <br><br><br>
+    <br>
+    <div data-inline-type="">
+        <div>
+            <a href="{% url 'edit profile' user.pk %}">
+                <button type="button" class="btn btn-primary btn-lg">Редактирай</button>
+            </a>
+        </div>
+        <div>
+            <form style="text-align: justify-all" method="post"
+                  action="{% url 'details profile' user.pk %}">
+                {% for field in fields %}
+                    <p>
+                        {{ field }}
+                    </p>
+
+                {% endfor %}
+                {% csrf_token %}
+                <h3>
+                    <label for='first_name'>Име:&nbsp</label>{{ students.first_name }}
+                    <label for='middle_name'>Презиме:&nbsp</label>{{ students.middle_name }}
+                    <label for='last_name'>Фамилия:&nbsp</label>{{ students.last_name }}
+                </h3>
+
+                <h3>Националност:&nbsp{{ students.nationality }} ЕГН:&nbsp{{ students.bg_personal_number }}</h3>
+                <h3>Номер на паспорт:&nbsp{{ students.id_passport_number }} Дата на
+                    издаване:&nbsp{{ students.passport_date_of_issue }}</h3>
+                <h3>Има ли издадена виза:&nbsp
+                    {% if students.is_received_visa %}
+                        Да
+                    {% else %}
+                        Не
+                    {% endif %}</h3>
+                <h3>Телефон:&nbsp{{ students.phone }} Е-mail:&nbsp{{ students.email }}</h3>
+                <h3>Дата на раждане:&nbsp{{ students.date_of_birth }} Място на
+                    раждане:&nbsp{{ students.place_of_birth }}</h3>
+                <h3>Държава на раждане:&nbsp{{ students.country_of_birth }}</h3>
+                <h3>Университет:&nbsp{{ students.university }}</h3>
+                <h3>Курс:&nbsp{{ students.year_of_education }}</h3>
+                <h3>Редовно записан/а:&nbsp
+                    {% if students.is_fulltime_student %}
+                        Да
+                    {% else %}
+                        Не
+                    {% endif %}
+                </h3>
+                <h3>Чуждестранен университет:&nbsp{{ students.foreign_university }}</h3>
+                <h3>Предпочитания за работа:&nbsp{{ students.search_job_pref }}</h3>
+                <h3>Начин на контакт:&nbsp{{ students.how_to_reach }}</h3>
+
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

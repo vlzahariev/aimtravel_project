@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <br><br><br>
+    <div>
+        <form method="post" action="{% url 'edit profile' user.pk %}">
+
+            {{ form.as_table }}
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-lg">Запази</button>
+        </form>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+    {% extends 'base.html' %}
+{% load static %}
+{% load placeholders %}
+
+{% block content %}
+
+    <h1>ОФЕРТИ</h1>
+    {% if offer_list %}
+        <div>
+            <ul>
+                {% for offer in offer_list %}
+                    <li style="display: inline-table; white-space: nowrap">
+                        <img src="{{ offer.offer_pic }}" alt="" width="200" height="200">
+                        <h2> {{ offer.job_position }} </h2>
+                        <h4> {{ offer.city }}, {{ offer.state }} </h4>
+                        <h4> ${{ offer.wage|floatformat:2 }}/hour, {{ offer.employer }}</h4>
+                        <h4> {{ offer.sponsor }}</h4>
+
+                        <a href="{% url 'details offer' offer.pk %}">
+                            <button class="btn btn-primary btn-lg">Виж повече</button>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p>В момента няма налични оферти.</p>
+    {% endif %}
+
+{% endblock %}

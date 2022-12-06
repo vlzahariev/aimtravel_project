@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load placeholders %}
+
+{% block content %}
+
+    <h1>ДОПЪЛНИТЕЛНИ УСЛУГИ</h1>
+    {% if services_list %}
+        <div>
+            <ul>
+                {% for service in services_list %}
+                    <li style="display: inline-table; white-space: nowrap">
+
+                        <h3> {{ service.service_type }} </h3>
+                        <h5> {{ service.service_description }}</h5>
+                        <h5> ${{ service.service_price }}</h5>
+
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p>В момента не предлагаме допълнителни услуги.</p>
+    {% endif %}
+
+{% endblock %}

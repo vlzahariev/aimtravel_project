@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="header-carousal owl-carousel owl-theme">
+                <div class="item">
+                    <h4>Започна</h4>
+                    <h2>КАМПАНИЯ 2023</h2>
+                    <p>Заповядайте при нас, за да намерите най-добрите оферти за WAT! </p>
+                    <a href="{% url 'offers' %}">
+                        <button>ВИЖ ОФЕРТИТЕ</button>
+                    </a>
+                </div>
+                <div class="item">
+                    <h4>НИЕ СМЕ</h4>
+                    <h2>AIM TRAVEL България</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                        Ipsum
+                        has
+                        <br>dummy text ever since the 1500s, Lorem Ipsum. </p>
+                    <button>GET STARTED</button>
+                </div>
+                <div class="item">
+                    <h4>ЗАЩО ДА ИЗБЕРА</h4>
+                    <h2>AIM TRAVEL</h2>
+                    <p>Ще получиш информация от хора с реален опит със студентските бригади
+                        <br> и партньорства с работодатели, сключени от първо лице!</p>
+                    <button>GET STARTED</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

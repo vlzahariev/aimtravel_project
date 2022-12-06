@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load placeholders %}
+
+{% block content %}
+
+    <br>
+    <br>
+    <br>
+    <div>
+        <center>
+            <form method="post" action="{% url 'sign up' %}">
+                {% for field in form %}
+                    {% if field.name == 'email' %}
+                        <label for="{{ field.name }}">Email</label>
+                    {% elif field.name == 'password1' %}
+                        <label for="{{ field.name }}">Password</label>
+                    {% else %}
+                        <label for="{{ field.name }}">Repeat Password</label>
+                    {% endif %}
+                    <p>
+
+                        {{ field }}
+                    </p>
+
+                {% endfor %}
+                {% csrf_token %}
+                <button class="btn btn-primary btn-lg">Регистрирай ме</button>
+            </form>
+        </center>
+    </div>
+
+
+    <br>
+    <br>
+    <br><br>
+    <br>
+    <br><br>
+    <br>
+    <br><br>
+    <br>
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div>
+        <h1>ЦЕНИ</h1>
+    </div>
+    {% if prices_list %}
+
+        <div align="center">
+
+            {% for price in prices_list %}
+                <ul>
+                    <li style="display: inline-block; white-space: nowrap">
+                        <h3> {{ price.pricing_type }} </h3>
+                        <h5> $ {{ price.price|floatformat:2 }} </h5>
+                        <h5> {{ price.description }} </h5>
+                    </li>
+                </ul>
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <p>В момента няма актуална информация.</p>
+    {% endif %}
+
+{% endblock %}

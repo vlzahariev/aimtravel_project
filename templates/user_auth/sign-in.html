@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load placeholders %}
+{% block content %}
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <center>
+            <form method="post" action="{% url 'sign in' %}" style="alignment-baseline: center">
+                {{ form.as_p }}
+                <input type="hidden" name="next" value="{{ next }}">
+                {% csrf_token %}
+                <button class="btn btn-primary btn-lg">Влез</button>
+            </form>
+        </center>
+    </div>
+    <br>
+    <br>
+
+
+
+
+{% endblock %}
