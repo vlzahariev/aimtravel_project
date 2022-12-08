@@ -72,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
             ],
         },
     },
@@ -147,3 +148,5 @@ AUTH_USER_MODEL = 'user_auth.AppUser'
 LOGIN_USERNAME_FIELDS = ['email', ]
 
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

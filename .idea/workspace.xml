@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="201f68d4-a32f-41ae-ab9f-8d79c59a2274" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/user_auth/change-password.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/password/password_reset.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/password/password_reset_complete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/password/password_reset_confirm.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/password/password_reset_done.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/password/password_reset_email.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aimtravel_project/user_auth/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_auth/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aimtravel_project/user_auth/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_auth/managers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aimtravel_project/user_auth/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_auth/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aimtravel_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aimtravel_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aimtravel_project/user_auth/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_auth/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_auth/register-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_auth/register-page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_profile/personal_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_profile/personal_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aimtravel_project/user_auth/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_auth/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_auth/sign-in.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_auth/sign-in.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +109,7 @@
       <updated>1670102207586</updated>
       <workItem from="1670102255643" duration="240000" />
       <workItem from="1670102587549" duration="7125000" />
-      <workItem from="1670159622735" duration="34133000" />
+      <workItem from="1670159622735" duration="40812000" />
     </task>
     <servers />
   </component>
@@ -117,9 +120,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/aimtravel_project/web/views.py</url>
-          <line>74</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/aimtravel_project/user_auth/validators.py</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/aimtravel_project/user_auth/views.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
