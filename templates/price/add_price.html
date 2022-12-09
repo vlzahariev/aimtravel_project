@@ -10,10 +10,10 @@
     <div class="container" align="center">
 
         <div>
-            <form method="post" action="{% url 'add employer' %}" style="{% static 'style.css' %}">
+            <form method="post" action="{% url 'add price' %}" style="{% static 'style.css' %}">
                 {{ form.as_p }}
                 {% csrf_token %}
-                <button class="btn btn-primary btn-lg">Добави работодател</button>
+                <button class="btn btn-primary btn-lg">Добави ценови план</button>
             </form>
         </div>
     </div>

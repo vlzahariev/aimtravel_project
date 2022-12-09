@@ -41,13 +41,9 @@
                             <div class="col-md-9 col-sm-12 col-xs-12">
                                 <div class="menu">
                                     <ul class="nav navbar-nav">
-                                        <li><a href="{% url 'team'  %}">За нас</a></li>
+                                        <li><a href="{% url 'team' %}">За нас</a></li>
                                         {% if user.is_authenticated %}
                                             <li><a href="#sign-in">Записване</a></li>
-                                        {% endif %}
-                                        {% if user.is_staff %}
-                                            <li><a href="http://localhost:8000/admin/">Администратор</a></li>
-                                            <li><a href="{% url 'add offer' %}">Добави оферта</a></li>
                                         {% endif %}
                                         <li><a href='{% url 'offers' %}'>Оферти</a></li>
                                         <li><a href="{% url 'view all employer' %}">Работодатели</a></li>
@@ -61,6 +57,9 @@
                                             {% else %}
                                                 <li><a href="{% url 'details profile' pk=user.pk %}">Личен
                                                     профил</a></li>
+                                            {% endif %}
+                                            {% if user.is_staff %}
+                                                <li><a href="{% url 'admin panel' %}">Админ Панел</a></li>
                                             {% endif %}
                                             <li><a href="{% url 'sign out' %}">Изход</a></li>
                                         {% else %}

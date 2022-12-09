@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container" align="center">
+        <div class="row" align="center">
+            <div class="col-md-2">
+                <a href="http://localhost:8000/admin/">
+                    <button class="btn btn-primary btn-lg>">Администрация</button>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'add offer' %}">
+                    <button class="btn btn-primary btn-lg>">Добави оферта</button>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'add employer' %}">
+                    <button class="btn btn-primary btn-lg>">Добави работодател</button>
+                </a>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'add price' %}">
+                    <button class="btn btn-primary btn-lg>">Добави ценови план</button>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

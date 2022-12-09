@@ -1,6 +1,8 @@
 from django.db import models
 from model_utils import Choices
 
+from aimtravel_project.web.validators import max_value
+
 
 class JobOffer(models.Model):
     job_position = models.CharField(
@@ -47,6 +49,12 @@ class JobOffer(models.Model):
         blank=True,
         null=True,
     )
+    ranking = models.PositiveIntegerField(
+        validators=(max_value,),
+        default=1,
+        blank=True,
+        null=True,
+    )
 
     def __str__(self):
         result = f'{self.job_position} at {self.employer} - {self.city}, {self.state}'
@@ -58,6 +66,7 @@ class Prices(models.Model):
     DEFAULT_PRICING_TYPE = 'Full Placement Standard'
 
     pricing_type = models.CharField(
+        verbose_name='Ценови план:',
         max_length=25,
         default=DEFAULT_PRICING_TYPE,
         choices=PRICING_TYPE,
@@ -65,12 +74,15 @@ class Prices(models.Model):
         null=True,
     )
 
-    price = models.FloatField()
+    price = models.FloatField(
+        verbose_name='Цена:',
+    )
 
     price_description = models.TextField(
+        verbose_name='В цената е включено:',
         blank=True,
         null=True,
-        help_text="Please enter description"
+        help_text="Моля добавете описание",
     )
 
     def __str__(self):
@@ -95,26 +107,31 @@ class AdditionalServices(models.Model):
 
 class Company(models.Model):
     employer_name = models.CharField(
+        verbose_name="Работодател",
         max_length=25,
         blank=False,
         null=True,
     )
     employer_city = models.CharField(
+        verbose_name='Град',
         max_length=15,
         blank=False,
         null=True,
     )
     employer_state = models.CharField(
+        verbose_name='Щат',
         max_length=2,
         blank=False,
         null=True,
     )
     employer_history = models.TextField(
+        verbose_name='Кратка история',
         max_length=250,
         blank=False,
         null=True,
     )
     employer_photo = models.URLField(
+        verbose_name='Снимка-URL',
         blank=True,
         null=True,
     )

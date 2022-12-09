@@ -5,17 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="201f68d4-a32f-41ae-ab9f-8d79c59a2274" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/password/password_reset.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/password/password_reset_complete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/password/password_reset_confirm.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/password/password_reset_done.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/password/password_reset_email.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aimtravel_project/user_profile/migrations/0002_students_is_employee.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aimtravel_project/user_profile/migrations/0003_employee_is_employee.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aimtravel_project/web/migrations/0003_joboffer_ranking.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aimtravel_project/web/migrations/0004_alter_company_employer_city_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aimtravel_project/web/validators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin_panel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/price/add_price.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/price/delete_price.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/price/details_price.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/price/edit_price.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aimtravel_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aimtravel_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aimtravel_project/user_auth/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_auth/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aimtravel_project/user_auth/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_auth/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_auth/sign-in.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_auth/sign-in.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aimtravel_project/user_profile/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_profile/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aimtravel_project/user_profile/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_profile/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aimtravel_project/web/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/web/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aimtravel_project/web/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/web/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aimtravel_project/web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/web/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aimtravel_project/web/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/web/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/employer/add_employer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employer/add_employer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/employer/details_employer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employer/details_employer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/employer/view_all.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employer/view_all.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/job_offer/details_offer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/job_offer/details_offer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/job_offer/offers.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/job_offer/offers.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/price/prices.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/price/prices.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user_profile/employee_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_profile/employee_profile.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +43,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -51,6 +67,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/vlzah/PycharmProjects/aimtravel_project/static",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -109,7 +126,7 @@
       <updated>1670102207586</updated>
       <workItem from="1670102255643" duration="240000" />
       <workItem from="1670102587549" duration="7125000" />
-      <workItem from="1670159622735" duration="40812000" />
+      <workItem from="1670159622735" duration="58747000" />
     </task>
     <servers />
   </component>

@@ -24,6 +24,9 @@
                 <h3><label for='employee_phone'>Телефон:&nbsp</label>{{ employee.employee_phone }}</h3>
                 <h3><label for='employee_email'>Е-майл:&nbsp</label>{{ employee.employee_email }}</h3>
             </form>
+            <a href="{% url 'change password' %}">
+                <button class="btn btn-primary btn-lg">Смяна на парола</button>
+            </a>
         </div>
     </div>
 

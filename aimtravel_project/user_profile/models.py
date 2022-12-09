@@ -148,6 +148,11 @@ class Students(models.Model):
         blank=True,
         null=True,
     )
+    is_employee = models.BooleanField(
+        default='False',
+        blank=True,
+        null=True,
+    )
 
     def __str__(self):
         name_str = f"{self.user}\n"
@@ -202,6 +207,11 @@ class Employee(models.Model):
     )
     employee_email = models.CharField(
         max_length=40,
+        blank=True,
+        null=True,
+    )
+    is_employee = models.BooleanField(
+        default='False',
         blank=True,
         null=True,
     )

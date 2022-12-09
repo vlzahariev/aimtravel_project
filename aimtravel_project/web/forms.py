@@ -1,6 +1,6 @@
 from django import forms
 
-from aimtravel_project.web.models import JobOffer, Company
+from aimtravel_project.web.models import JobOffer, Company, Prices
 
 
 class JobOfferDetailForm(forms.ModelForm):
@@ -30,7 +30,21 @@ class CompanyDetailForm(forms.ModelForm):
         fields = '__all__'
 
 
-class JobOfferCompanyForm(forms.ModelForm):
+class CompanyEditForm(forms.ModelForm):
     class Meta:
         model = Company
+        fields = '__all__'
+
+        widgets = {
+            'employer_name': forms.TextInput(attrs={'placeholder': 'Работодател'}),
+            'employer_city': forms.TextInput(attrs={'placeholder': 'Град'}),
+            'employer_state': forms.TextInput(attrs={'placeholder': 'Щат'}),
+            'employer_history': forms.Textarea(attrs={'placeholder': 'Кратка история'}),
+            'employer_photo': forms.TextInput(attrs={'placeholder': 'Снимка-URL'}),
+        }
+
+
+class PriceDetailForm(forms.ModelForm):
+    class Meta:
+        model = Prices
         fields = '__all__'

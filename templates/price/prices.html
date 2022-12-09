@@ -4,25 +4,31 @@
 
 {% block content %}
     <div>
-        <h1>ЦЕНИ</h1>
+        <br><br><br>
+        <h1 align="center">ЦЕНИ</h1>
     </div>
     {% if prices_list %}
 
-        <div align="center">
+        <div class="row" align="center">
 
             {% for price in prices_list %}
-                <ul>
-                    <li style="display: inline-block; white-space: nowrap">
+
+                    <div class="col-md-3">
                         <h3> {{ price.pricing_type }} </h3>
                         <h5> $ {{ price.price|floatformat:2 }} </h5>
                         <h5> {{ price.description }} </h5>
-                    </li>
-                </ul>
+
+                        <a href="{% url 'details price' pk=price.pk %}">
+                            <button class="btn btn-primary btn-lg">Опции</button>
+                        </a>
+
+                    </div>
             {% endfor %}
 
         </div>
     {% else %}
-        <p>В момента няма актуална информация.</p>
+        <br><br>
+        <p align="center">В момента няма актуална информация.</p>
     {% endif %}
 
 {% endblock %}
