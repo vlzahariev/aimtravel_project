@@ -148,11 +148,6 @@ class Students(models.Model):
         blank=True,
         null=True,
     )
-    is_employee = models.BooleanField(
-        default='False',
-        blank=True,
-        null=True,
-    )
 
     def __str__(self):
         name_str = f"{self.user}\n"
@@ -161,17 +156,6 @@ class Students(models.Model):
         if self.last_name:
             name_str += '\n' + self.last_name
         return name_str
-
-    @receiver(post_save, sender=UserModel)
-    def create_profile(sender, instance, created, *args, **kwargs):
-        if created:
-            Students.objects.create(user=instance)
-
-
-"""
-Above 'Signal' is placed to create 'Student' (regular user) instance. 
-Can be filled later by the student/employee/superuser. 
-"""
 
 
 class Employee(models.Model):
@@ -210,19 +194,21 @@ class Employee(models.Model):
         blank=True,
         null=True,
     )
-    is_employee = models.BooleanField(
-        default='False',
-        blank=True,
-        null=True,
-    )
 
-    @receiver(post_save, sender=UserModel)
-    def create_profile(sender, instance, created, *args, **kwargs):
-        if created:
-            Employee.objects.create(user=instance)
+    """
+    *edited*
+    Below signal not to be used. To avoid creating two separate instances of Employee model and Student Model to same AppUser instance, 
+    If employee user needs to be created, super user will create instance of AppUser,
+    and then manually delete automatically created Student Model, and manually create Employee Model, assigning 
+    manually the user to the model.
+
+    Above 'Signal' is placed to create 'Employee' (staff user) instance. 
+    Can be filled later by the employee/superuser. 
+    """
+    # @receiver(post_save, sender=UserModel)
+    # def create_profile(sender, instance, created, *args, **kwargs):
+    #     if created:
+    #         Employee.objects.created(user=instance)
 
 
-"""
-Above 'Signal' is placed to create 'Employee' (staff user) instance. 
-Can be filled later by the employee/superuser. 
-"""
+
