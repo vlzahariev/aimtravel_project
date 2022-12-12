@@ -13,3 +13,5 @@ urlpatterns = (
         path('edit/<int:pk>/', EditEmployeeProfileView.as_view(), name='employee profile edit')
     ])),
 )
+
+from .signals import *

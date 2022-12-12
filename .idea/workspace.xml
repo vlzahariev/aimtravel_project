@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="201f68d4-a32f-41ae-ab9f-8d79c59a2274" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/aimtravel_project/user_profile/migrations/0004_remove_employee_is_employee_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/aimtravel_project/user_profile/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aimtravel_project/user_profile/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_profile/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aimtravel_project/user_profile/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_profile/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user_auth/auth_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user_auth/auth_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aimtravel_project/user_profile/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_profile/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aimtravel_project/user_profile/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/aimtravel_project/user_profile/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +103,7 @@
       <updated>1670102207586</updated>
       <workItem from="1670102255643" duration="240000" />
       <workItem from="1670102587549" duration="7125000" />
-      <workItem from="1670159622735" duration="69102000" />
+      <workItem from="1670159622735" duration="70580000" />
     </task>
     <servers />
   </component>
