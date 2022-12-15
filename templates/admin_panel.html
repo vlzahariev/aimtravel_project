@@ -8,12 +8,12 @@
     <br>
     <div class="container" align="center">
         <div class="row" align="center">
-            <div>
+            <div class="col-md-3">
                 <a href="http://localhost:8000/admin/">
                     <button class="btn btn-primary btn-lg>" style="scale: 150%">Администрация</button>
                 </a>
             </div>
-            <div>
+            <div class="col-md-3">
                 <a href="{% url 'list profiles' %}">
                     <button class="btn btn-primary btn-lg>" style="scale: 150%">Списък "Студенти"</button>
                 </a>
@@ -35,6 +35,11 @@
                 <div class="col-md-3">
                     <a href="{% url 'add price' %}">
                         <button class="btn btn-primary btn-lg>" style="scale: 150%">Добави ценови план</button>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'add service' %}">
+                        <button class="btn btn-primary btn-lg>" style="scale: 150%">Добави услуга</button>
                     </a>
                 </div>
             {% endif %}

@@ -1,11 +1,14 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
-from django.shortcuts import render
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
 from aimtravel_project.user_profile.models import Employee
-from aimtravel_project.web.forms import JobOfferDetailForm, CompanyDetailForm, CompanyEditForm, PriceDetailForm
+from aimtravel_project.web.forms import JobOfferDetailForm, CompanyDetailForm, CompanyEditForm, PriceDetailForm, \
+    ServiceDetailForm, ContactForm
 from aimtravel_project.web.models import JobOffer, Prices, AdditionalServices, Company
 
 
@@ -121,10 +124,53 @@ class DeletePriceView(LoginRequiredMixin, UserPassesTestMixin, views.DeleteView)
         return self.request.user.is_staff
 
 
+class CreateServiceView(LoginRequiredMixin, UserPassesTestMixin, views.CreateView):
+    fields = '__all__'
+    model = AdditionalServices
+    template_name = 'additional_services/add_service.html'
+    success_url = reverse_lazy('show additional services')
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+
 class DisplayAdditionalServicesView(views.ListView):
     model = AdditionalServices
     template_name = 'additional_services/additional_services.html'
     context_object_name = 'services_list'
+    ordering = 'pk'
+
+
+class EditServiceView(LoginRequiredMixin, UserPassesTestMixin, views.UpdateView):
+    model = AdditionalServices
+    fields = '__all__'
+    template_name = 'additional_services/edit_service.html'
+    context_object_name = 'edit_service'
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+    def get_success_url(self):
+        service_pk = self.kwargs['pk']
+        return reverse_lazy('details service', kwargs={'pk': service_pk})
+
+
+class DetailsServiceView(views.DetailView):
+    model = AdditionalServices
+    template_name = 'additional_services/details_service.html'
+    form_class = ServiceDetailForm
+    context_object_name = 'service_details'
+
+
+class DeleteServiceView(LoginRequiredMixin, UserPassesTestMixin, views.DeleteView):
+    model = AdditionalServices
+    template_name = 'additional_services/delete_service.html'
+    context_object_name = 'delete_service'
+    template_name_suffix = '_confirm_delete'
+    success_url = reverse_lazy('show additional services')
+
+    def test_func(self):
+        return self.request.user.is_staff
 
 
 class AllEmployeeView(views.ListView):
@@ -182,3 +228,26 @@ class DeleteCompanyView(LoginRequiredMixin, UserPassesTestMixin, views.DeleteVie
 
     def test_func(self):
         return self.request.user.is_staff
+
+
+def contact(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = "Website Inquiry"
+            body = {
+                'name': form.cleaned_data['name'],
+                'email': form.cleaned_data['email'],
+                'subject': form.cleaned_data['subject'],
+                'message': form.cleaned_data['message'],
+            }
+            message = "\n".join(body.values())
+
+            try:
+                send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect("index")
+
+        form = ContactForm()
+        return render(request, "base.html", {'form': form})

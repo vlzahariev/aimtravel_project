@@ -91,15 +91,18 @@ class Prices(models.Model):
 
 class AdditionalServices(models.Model):
     service_type = models.CharField(
+        verbose_name='Вид услуга',
         max_length=30,
         blank=True,
         null=True,
     )
     service_description = models.TextField(
+        verbose_name='Описание на услугата',
         blank=True,
         null=True,
     )
     service_price = models.FloatField(
+        verbose_name='Цена на услугата',
         blank=True,
         null=True,
     )

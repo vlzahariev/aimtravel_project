@@ -66,7 +66,8 @@ class AllUsersView(LoginRequiredMixin, UserPassesTestMixin, views.ListView):
     model = Students
     template_name = 'user_profile/all_students.html'
     context_object_name = 'student_list'
-    ordering = 'user'
+    ordering = 'first_name'
+    paginate_by = 2
 
     def test_func(self):
         return self.request.user.is_staff

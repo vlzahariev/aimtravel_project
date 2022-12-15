@@ -1,14 +1,12 @@
 from django.urls import path, include
 
 from aimtravel_project.web import views
-from aimtravel_project.web.views import CreateOfferView, DisplayOfferView, AllEmployeeView, \
-    DisplayAdditionalServicesView, EditOfferView, DeleteOfferView, DetailsOfferView, CreateCompanyView, AllCompanyView, \
-    EditCompanyView, CompanyDetailView, DeleteCompanyView, DisplayPricesView, CreatePriceView, EditPriceView, \
-    DeletePriceView, DetailsPriceView
+from aimtravel_project.web.views import *
 
 urlpatterns = (
-    path('', views.index, name='index'),
-    path('admin_panel/', views.admin_panel, name='admin panel'),
+    path('', index, name='index'),
+    path('admin_panel/', admin_panel, name='admin panel'),
+    path('contact/', contact, name='contact'),
     path('offer/', include([
         path('add/', CreateOfferView.as_view(), name='add offer'),
         path('offers/', DisplayOfferView.as_view(), name='offers'),
@@ -23,7 +21,13 @@ urlpatterns = (
         path('delete/<int:pk>/', DeletePriceView.as_view(), name='delete price'),
         path('details/<int:pk>/', DetailsPriceView.as_view(), name='details price'),
     ])),
-    path('services/', DisplayAdditionalServicesView.as_view(), name='show additional services'),
+    path('services/', include([
+        path('all/', DisplayAdditionalServicesView.as_view(), name='show additional services'),
+        path('add/', CreateServiceView.as_view(), name='add service'),
+        path('edit/<int:pk>/', EditServiceView.as_view(), name='edit service'),
+        path('delete/<int:pk>/', DeleteServiceView.as_view(), name='delete service'),
+        path('details/<int:pk>/', DetailsServiceView.as_view(), name='details service'),
+    ])),
     path('team/', AllEmployeeView.as_view(), name='team'),
     path('employer/', include([
         path('all/', AllCompanyView.as_view(), name='view all employer'),

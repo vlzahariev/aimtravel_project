@@ -1,6 +1,6 @@
 from django import forms
 
-from aimtravel_project.web.models import JobOffer, Company, Prices
+from aimtravel_project.web.models import JobOffer, Company, Prices, AdditionalServices
 
 
 class JobOfferDetailForm(forms.ModelForm):
@@ -48,3 +48,16 @@ class PriceDetailForm(forms.ModelForm):
     class Meta:
         model = Prices
         fields = '__all__'
+
+
+class ServiceDetailForm(forms.ModelForm):
+    class Meta:
+        model = AdditionalServices
+        fields = '__all__'
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=50)
+    email = forms.EmailField(max_length=100)
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField(max_length=500)

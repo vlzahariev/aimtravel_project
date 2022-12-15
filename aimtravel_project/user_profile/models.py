@@ -20,11 +20,12 @@ class Students(models.Model):
         default='',
     )
     middle_name = models.CharField(
+        default="-",
         max_length=15,
         verbose_name='Презиме',
         blank=True,
         null=True,
-        default='',
+
     )
     last_name = models.CharField(
         max_length=15,
@@ -97,7 +98,7 @@ class Students(models.Model):
         default='',
     )
     passport_date_of_issue = models.DateField(
-        verbose_name='Дата на издаване на паспорт',
+        verbose_name='Дата на издаване',
         blank=True,
         null=True,
     )

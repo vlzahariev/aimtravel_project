@@ -1,11 +1,3 @@
-.one_row div {
-    display: inline-block;
-	width: 500px;
-	min-height: 50px;
-	background-color: #eee;
-	height: auto;
-  }
-
 .wrapper header.header {
     background-image: url("img/header-bg.jpg");
     background-repeat: no-repeat;

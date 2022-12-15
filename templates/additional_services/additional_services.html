@@ -1,26 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load placeholders %}
+
 
 {% block content %}
-
-    <h1>ДОПЪЛНИТЕЛНИ УСЛУГИ</h1>
+    <div>
+        <br><br><br>
+        <h1 align="center">ДОПЪЛНИТЕЛНИ УСЛУГИ</h1>
+    </div>
     {% if services_list %}
-        <div>
-            <ul>
-                {% for service in services_list %}
-                    <li style="display: inline-table; white-space: nowrap">
 
-                        <h3> {{ service.service_type }} </h3>
-                        <h5> {{ service.service_description }}</h5>
-                        <h5> ${{ service.service_price }}</h5>
+        <div class="row" align="center">
 
-                    </li>
-                {% endfor %}
-            </ul>
+            {% for service in services_list %}
+
+                <div align="left">
+                    <h3> {{ service.service_type }}
+                        <a href="{% url 'details service' pk=service.pk %}">
+                            <button class="btn btn-primary btn-lg">Подробности</button>
+                        </a>
+                    </h3>
+
+
+                </div>
+            {% endfor %}
+
         </div>
     {% else %}
-        <p>В момента не предлагаме допълнителни услуги.</p>
+        <br><br>
+        <p align="center">В момента няма актуална информация.</p>
     {% endif %}
 
 {% endblock %}
