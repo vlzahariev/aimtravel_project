@@ -1,4 +1,5 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
@@ -6,6 +7,9 @@ from django.views import generic as views
 from aimtravel_project.user_profile.models import Employee
 from aimtravel_project.web.forms import JobOfferDetailForm, CompanyDetailForm, CompanyEditForm, PriceDetailForm
 from aimtravel_project.web.models import JobOffer, Prices, AdditionalServices, Company
+
+
+UserModel = get_user_model()
 
 
 # Create your views here.
@@ -18,13 +22,14 @@ def admin_panel(request):
     return render(request, template_name='admin_panel.html')
 
 
-class CreateOfferView(LoginRequiredMixin, PermissionRequiredMixin, views.CreateView):
-    permission_required = ('is_staff',)
-    permission_denied_message = 'Нямаш необходимите права.'
+class CreateOfferView(LoginRequiredMixin, UserPassesTestMixin, views.CreateView):
     fields = '__all__'
     model = JobOffer
     template_name = 'job_offer/add_offer.html'
     success_url = reverse_lazy('offers')
+
+    def test_func(self):
+        return self.request.user.is_staff
 
 
 class DisplayOfferView(views.ListView):
@@ -42,11 +47,9 @@ class DetailsOfferView(views.DetailView):
     context_object_name = 'offer_details'
 
 
-class EditOfferView(LoginRequiredMixin, PermissionRequiredMixin, views.UpdateView):
+class EditOfferView(LoginRequiredMixin, UserPassesTestMixin, views.UpdateView):
     model = JobOffer
     fields = '__all__'
-    permission_required = ('is_staff',)
-    permission_denied_message = 'Нямаш необходимите права.'
     template_name = 'job_offer/edit_offer.html'
     context_object_name = 'edit_offer'
 
@@ -54,24 +57,29 @@ class EditOfferView(LoginRequiredMixin, PermissionRequiredMixin, views.UpdateVie
         offer_pk = self.kwargs['pk']
         return reverse_lazy('details offer', kwargs={'pk': offer_pk})
 
+    def test_func(self):
+        return self.request.user.is_staff
 
-class DeleteOfferView(LoginRequiredMixin, PermissionRequiredMixin, views.DeleteView):
+
+class DeleteOfferView(LoginRequiredMixin, UserPassesTestMixin, views.DeleteView):
     model = JobOffer
-    permission_required = ('is_staff',)
-    permission_denied_message = 'Нямаш необходимите права.'
     template_name = 'job_offer/delete_offer.html'
     context_object_name = 'delete_offer'
     template_name_suffix = '_confirm_delete'
     success_url = reverse_lazy('offers')
 
+    def test_func(self):
+        return self.request.user.is_staff
 
-class CreatePriceView(LoginRequiredMixin, PermissionRequiredMixin, views.CreateView):
-    permission_required = ('is_superuser',)
-    permission_denied_message = 'Нямаш необходимите права.'
+
+class CreatePriceView(LoginRequiredMixin, UserPassesTestMixin, views.CreateView):
     fields = '__all__'
     model = Prices
     template_name = 'price/add_price.html'
     success_url = reverse_lazy('prices')
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 class DisplayPricesView(views.ListView):
@@ -81,13 +89,14 @@ class DisplayPricesView(views.ListView):
     context_object_name = 'prices_list'
 
 
-class EditPriceView(LoginRequiredMixin, PermissionRequiredMixin, views.UpdateView):
+class EditPriceView(LoginRequiredMixin, UserPassesTestMixin, views.UpdateView):
     model = Prices
     fields = '__all__'
-    permission_required = ('is_superuser',)
-    permission_denied_message = 'Нямаш необходимите права.'
     template_name = 'price/edit_price.html'
     context_object_name = 'edit_price'
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
     def get_success_url(self):
         price_pk = self.kwargs['pk']
@@ -101,14 +110,15 @@ class DetailsPriceView(views.DetailView):
     context_object_name = 'price_details'
 
 
-class DeletePriceView(LoginRequiredMixin, PermissionRequiredMixin, views.DeleteView):
+class DeletePriceView(LoginRequiredMixin, UserPassesTestMixin, views.DeleteView):
     model = Prices
-    permission_required = ('is_superuser',)
-    permission_denied_message = 'Нямаш необходимите права.'
     template_name = 'price/delete_price.html'
     context_object_name = 'delete_price'
     template_name_suffix = '_confirm_delete'
     success_url = reverse_lazy('prices')
+
+    def test_func(self):
+        return self.request.user.is_staff
 
 
 class DisplayAdditionalServicesView(views.ListView):
@@ -121,15 +131,17 @@ class AllEmployeeView(views.ListView):
     model = Employee
     template_name = 'about_us/team.html'
     context_object_name = 'employee_list'
+    ordering = 'user'
 
 
-class CreateCompanyView(LoginRequiredMixin, PermissionRequiredMixin, views.CreateView):
-    permission_required = ('is_staff',)
-    permission_denied_message = 'Нямаш необходимите права.'
+class CreateCompanyView(LoginRequiredMixin, UserPassesTestMixin, views.CreateView):
     fields = '__all__'
     model = Company
     template_name = 'employer/add_employer.html'
     success_url = reverse_lazy('view all employer')
+
+    def test_func(self):
+        return self.request.user.is_staff
 
 
 class CompanyDetailView(views.DetailView):
@@ -147,24 +159,26 @@ class AllCompanyView(views.ListView):
     ordering = 'employer_name'
 
 
-class EditCompanyView(LoginRequiredMixin, PermissionRequiredMixin, views.UpdateView):
+class EditCompanyView(LoginRequiredMixin, UserPassesTestMixin, views.UpdateView):
     model = Company
-    permission_required = ('is_staff',)
-    permission_denied_message = 'Нямаш необходимите права.'
     template_name = 'employer/edit_employer.html'
     context_object_name = 'edit_employer'
     form_class = CompanyEditForm
+
+    def test_func(self):
+        return self.request.user.is_staff
 
     def get_success_url(self):
         emp_pk = self.kwargs['pk']
         return reverse_lazy('employer details', kwargs={'pk': emp_pk})
 
 
-class DeleteCompanyView(LoginRequiredMixin, PermissionRequiredMixin, views.DeleteView):
+class DeleteCompanyView(LoginRequiredMixin, UserPassesTestMixin, views.DeleteView):
     model = Company
-    permission_required = ('is_staff',)
-    permission_denied_message = 'Нямаш необходимите права.'
     template_name = 'employer/delete_employer.html'
     context_object_name = 'delete_company'
     template_name_suffix = '_confirm_delete'
     success_url = reverse_lazy('view all employer')
+
+    def test_func(self):
+        return self.request.user.is_staff

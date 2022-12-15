@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+        <div class="one_row">
+            {% for user in student_list %}
+
+                <div style='color: whitesmoke'><h3>{{ user.first_name }} {{ user.last_name }} - {{ user.user }} <a href="{% url 'details profile' user.pk %}">
+                        <button class="btn btn-primary btn-lg" style="scale: 80%">Инфо</button>
+                    </a>
+                </h3>
+                </div>
+                <div>
+
+                </div>
+            {% endfor %}
+        </div>
+
+
+{% endblock %}

@@ -41,9 +41,11 @@
         <img src="../../static/img/section-icon.jpg" alt="">
     </div>
     <div class="container">
-        {% for emp in employee_list %}
-            {% if emp.employee_first_name %}
-                <div class="row">
+
+        <div class="row">
+            {% for emp in employee_list %}
+                {% if emp.employee_first_name %}
+
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div>
                             <img src="{{ emp.employee_pic }}" alt="" height="100" width="100">
@@ -51,10 +53,11 @@
                             <p>{{ emp.employee_role }}</p>
                         </div>
                     </div>
-                </div>
-            {% endif %}
-        {% endfor %}
 
+                {% endif %}
+
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}

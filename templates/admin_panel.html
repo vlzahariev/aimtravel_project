@@ -8,26 +8,36 @@
     <br>
     <div class="container" align="center">
         <div class="row" align="center">
-            <div class="col-md-2">
+            <div>
                 <a href="http://localhost:8000/admin/">
-                    <button class="btn btn-primary btn-lg>">Администрация</button>
+                    <button class="btn btn-primary btn-lg>" style="scale: 150%">Администрация</button>
                 </a>
             </div>
-            <div class="col-md-2">
-                <a href="{% url 'add offer' %}">
-                    <button class="btn btn-primary btn-lg>">Добави оферта</button>
+            <div>
+                <a href="{% url 'list profiles' %}">
+                    <button class="btn btn-primary btn-lg>" style="scale: 150%">Списък "Студенти"</button>
                 </a>
             </div>
-            <div class="col-md-2">
-                <a href="{% url 'add employer' %}">
-                    <button class="btn btn-primary btn-lg>">Добави работодател</button>
-                </a>
-            </div>
-            <div class="col-md-2">
-                <a href="{% url 'add price' %}">
-                    <button class="btn btn-primary btn-lg>">Добави ценови план</button>
-                </a>
-            </div>
+        </div>
+    <br><br><br>
+        <div class="row" align="center">
+            {% if request.user.is_superuser %}
+                <div class="col-md-3">
+                    <a href="{% url 'add offer' %}">
+                        <button class="btn btn-primary btn-lg>" style="scale: 150%">Добави оферта</button>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'add employer' %}">
+                        <button class="btn btn-primary btn-lg>" style="scale: 150%">Добави работодател</button>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'add price' %}">
+                        <button class="btn btn-primary btn-lg>" style="scale: 150%">Добави ценови план</button>
+                    </a>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

@@ -35,6 +35,11 @@
                                             <img src="/static/img/aimtravel_logo.jpg" alt="" width="172"
                                                  height="71">
                                         </a>
+                                        {% if user.is_authenticated %}
+                                        <h5>
+                                            Добре дошъл, {{ user }}.
+                                        </h5>
+                                        {% endif %}
                                     </h2>
                                 </div>
                             </div>

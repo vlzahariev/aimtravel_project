@@ -4,7 +4,7 @@
 
     <br><br><br>
     <div>
-        <form method="post" action="{% url 'edit profile' user.pk %}">
+        <form method="post" action="{% url 'edit profile' students.pk %}">
 
             {{ form.as_table }}
             {% csrf_token %}
