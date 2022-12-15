@@ -14,10 +14,10 @@
             {% for service in services_list %}
 
                 <div align="left">
-                    <h3> {{ service.service_type }}
-                        <a href="{% url 'details service' pk=service.pk %}">
+                    <h3> <a href="{% url 'details service' pk=service.pk %}">
                             <button class="btn btn-primary btn-lg">Подробности</button>
-                        </a>
+                        </a> {{ service.service_type }}
+
                     </h3>
 
 

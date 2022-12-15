@@ -18,9 +18,12 @@ class StudentEditForm(forms.ModelForm):
     is_fulltime_student = forms.BooleanField(required=False)
     date_of_birth = forms.DateField(
         required=False,
+        widget=forms.DateInput(format='%d-%m-%y'),
         input_formats=[
+            '%d-%m-%Y',
             '%d-%m-%y',
             '%d.%m.%y',
+            '%d.%m.%Y',
             '%Y-%m-%d',
             '%m/%d/%Y',
             '%m/%d/%y',
@@ -31,8 +34,27 @@ class StudentEditForm(forms.ModelForm):
             '%B %d %Y',
             '%B %d, %Y',
             '%d %B %Y',
-            '%d %B, %Y'],
-        help_text='DD-MM-YYYY',
+            '%d %B, %Y']
+    )
+    passport_date_of_issue = forms.DateField(
+        required=False,
+        widget=forms.DateInput(format='%d-%m-%y'),
+        input_formats=[
+            '%d-%m-%Y',
+            '%d-%m-%y',
+            '%d.%m.%y',
+            '%d.%m.%Y',
+            '%Y-%m-%d',
+            '%m/%d/%Y',
+            '%m/%d/%y',
+            '%b %d %Y',
+            '%b %d, %Y',
+            '%d %b %Y',
+            '%d %b, %Y',
+            '%B %d %Y',
+            '%B %d, %Y',
+            '%d %B %Y',
+            '%d %B, %Y']
     )
 
     class Meta:
@@ -42,7 +64,7 @@ class StudentEditForm(forms.ModelForm):
             'first_name': forms.TextInput(attrs={'placeholder': 'Име'}),
             'middle_name': forms.TextInput(attrs={'placeholder': 'Презиме'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Фамилия'}),
-            'date_of_birth': forms.TextInput(attrs={'placeholder': 'Дата на раждане'}),
+            'date_of_birth': forms.DateField(),
             'place_of_birth': forms.TextInput(attrs={'placeholder': 'Място на раждане'}),
             'city': forms.TextInput(attrs={'placeholder': 'Град'}),
             'province': forms.TextInput(attrs={'placeholder': 'Област'}),

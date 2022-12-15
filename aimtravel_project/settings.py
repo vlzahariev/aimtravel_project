@@ -17,7 +17,6 @@ from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -31,7 +30,6 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
 ]
-
 
 # Application definition
 
@@ -80,7 +78,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'aimtravel_project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -94,7 +91,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -114,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -125,7 +120,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -147,6 +141,20 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 AUTH_USER_MODEL = 'user_auth.AppUser'
 LOGIN_USERNAME_FIELDS = ['email', ]
 
-DATE_INPUT_FORMATS = ['%d-%m-%Y']
+DATE_INPUT_FORMATS = [
+    '%d-%m-%Y',
+    '%d-%m-%y',
+    '%d.%m.%y',
+    '%Y-%m-%d',
+    '%m/%d/%Y',
+    '%m/%d/%y',
+    '%b %d %Y',
+    '%b %d, %Y',
+    '%d %b %Y',
+    '%d %b, %Y',
+    '%B %d %Y',
+    '%B %d, %Y',
+    '%d %B %Y',
+    '%d %B, %Y']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

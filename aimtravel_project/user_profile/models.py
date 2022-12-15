@@ -20,7 +20,7 @@ class Students(models.Model):
         default='',
     )
     middle_name = models.CharField(
-        default="-",
+        default="",
         max_length=15,
         verbose_name='Презиме',
         blank=True,
@@ -129,6 +129,7 @@ class Students(models.Model):
         default='',
     )
     year_of_education = models.PositiveIntegerField(
+        default='',
         verbose_name='Курс',
         blank=True,
         null=True,
