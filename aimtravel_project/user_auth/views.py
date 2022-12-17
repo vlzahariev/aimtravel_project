@@ -48,7 +48,6 @@ def password_reset_request(request):
             data = password_reset_form.cleaned_data['email']
             associated_users = AppUser.objects.filter(Q(email=data))
             if associated_users.exists():
-                print(associated_users)
                 for user in associated_users:
                     subject = "Password Reset Requested"
                     email_template_name = "password/password_reset_email.txt"

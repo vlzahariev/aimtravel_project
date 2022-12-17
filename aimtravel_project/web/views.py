@@ -131,7 +131,7 @@ class CreateServiceView(LoginRequiredMixin, UserPassesTestMixin, views.CreateVie
     fields = '__all__'
     model = AdditionalServices
     template_name = 'additional_services/add_service.html'
-    success_url = reverse_lazy('show additional services')
+    success_url = reverse_lazy('services')
 
     def test_func(self):
         return self.request.user.is_staff
@@ -170,7 +170,7 @@ class DeleteServiceView(LoginRequiredMixin, UserPassesTestMixin, views.DeleteVie
     template_name = 'additional_services/delete_service.html'
     context_object_name = 'delete_service'
     template_name_suffix = '_confirm_delete'
-    success_url = reverse_lazy('show additional services')
+    success_url = reverse_lazy('services')
 
     def test_func(self):
         return self.request.user.is_staff
@@ -187,7 +187,7 @@ class CreateCompanyView(LoginRequiredMixin, UserPassesTestMixin, views.CreateVie
     fields = '__all__'
     model = Company
     template_name = 'employer/add_employer.html'
-    success_url = reverse_lazy('view all employer')
+    success_url = reverse_lazy('employers')
 
     def test_func(self):
         return self.request.user.is_staff
@@ -227,7 +227,7 @@ class DeleteCompanyView(LoginRequiredMixin, UserPassesTestMixin, views.DeleteVie
     template_name = 'employer/delete_employer.html'
     context_object_name = 'delete_company'
     template_name_suffix = '_confirm_delete'
-    success_url = reverse_lazy('view all employer')
+    success_url = reverse_lazy('employers')
 
     def test_func(self):
         return self.request.user.is_staff

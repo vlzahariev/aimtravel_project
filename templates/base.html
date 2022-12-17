@@ -54,9 +54,9 @@
                                         <li><a href="{% url 'index' %}">Начало</a></li>
                                         <li><a href="{% url 'team' %}">За нас</a></li>
                                         <li><a href='{% url 'offers' %}'>Оферти</a></li>
-                                        <li><a href="{% url 'view all employer' %}">Работодатели</a></li>
+                                        <li><a href="{% url 'employers' %}">Работодатели</a></li>
                                         <li><a href="{% url 'prices' %}">Цени</a></li>
-                                        <li><a href="{% url 'show additional services' %}">Допълнителни услуги</a></li>
+                                        <li><a href="{% url 'services' %}">Допълнителни услуги</a></li>
                                         <li><a href="#contacts">Контакти</a></li>
                                         {% if user.is_authenticated %}
                                             {% if user.is_staff %}
