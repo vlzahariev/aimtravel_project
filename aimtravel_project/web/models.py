@@ -5,15 +5,21 @@ from aimtravel_project.web.validators import max_value
 
 
 class JobOffer(models.Model):
+    POSITION_NAME = 30
+    EMPLOYER_NAME = 30
+    CITY_NAME = 20
+    STATE_NAME = 2
+    SPONSOR_NAME = 20
+
     job_position = models.CharField(
         verbose_name='Позиция',
-        max_length=30,
+        max_length=POSITION_NAME,
         blank=True,
         null=True,
     )
     employer = models.CharField(
         verbose_name='Работодател',
-        max_length=30,
+        max_length=EMPLOYER_NAME,
         blank=True,
         null=True,
     )
@@ -24,19 +30,19 @@ class JobOffer(models.Model):
     )
     city = models.CharField(
         verbose_name='Град',
-        max_length=20,
+        max_length=CITY_NAME,
         blank=True,
         null=True,
     )
     state = models.CharField(
         verbose_name='Щат',
-        max_length=20,
+        max_length=STATE_NAME,
         blank=True,
         null=True,
     )
     sponsor = models.CharField(
         verbose_name='Спонсор',
-        max_length=15,
+        max_length=SPONSOR_NAME,
         blank=True,
         null=True,
     )
@@ -64,10 +70,11 @@ class JobOffer(models.Model):
 class Prices(models.Model):
     PRICING_TYPE = Choices('Self Arranged', 'Full Placement Standard', 'Premium Full Placement', )
     DEFAULT_PRICING_TYPE = 'Full Placement Standard'
+    MAX_NAME = 25
 
     pricing_type = models.CharField(
         verbose_name='Ценови план:',
-        max_length=25,
+        max_length=MAX_NAME,
         default=DEFAULT_PRICING_TYPE,
         choices=PRICING_TYPE,
         blank=True,
@@ -90,9 +97,11 @@ class Prices(models.Model):
 
 
 class AdditionalServices(models.Model):
+    MAX_NAME = 30
+
     service_type = models.CharField(
         verbose_name='Вид услуга',
-        max_length=30,
+        max_length=MAX_NAME,
         blank=True,
         null=True,
     )
@@ -109,27 +118,32 @@ class AdditionalServices(models.Model):
 
 
 class Company(models.Model):
+    EMPLOYER_NAME = 30
+    CITY_NAME = 20
+    STATE_NAME = 2
+    EMPLOYER_HISTORY = 250
+
     employer_name = models.CharField(
         verbose_name="Работодател",
-        max_length=25,
+        max_length=EMPLOYER_NAME,
         blank=False,
         null=True,
     )
     employer_city = models.CharField(
         verbose_name='Град',
-        max_length=15,
+        max_length=CITY_NAME,
         blank=False,
         null=True,
     )
     employer_state = models.CharField(
         verbose_name='Щат',
-        max_length=2,
+        max_length=STATE_NAME,
         blank=False,
         null=True,
     )
     employer_history = models.TextField(
         verbose_name='Кратка история',
-        max_length=250,
+        max_length=EMPLOYER_HISTORY,
         blank=False,
         null=True,
     )
