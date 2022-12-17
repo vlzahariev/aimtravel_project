@@ -17,7 +17,7 @@
         <br>
         <br>
         <br>
-        {% if user.is_superuser %}
+        {% if user.is_staff %}
             <a href="{% url 'edit employer' employer_details.pk %}">
                 <button class="btn btn-primary btn-lg">Редактирай</button>
             </a>

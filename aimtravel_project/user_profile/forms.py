@@ -13,6 +13,12 @@ They keep data needed for WAT program.
 """
 
 
+def handle_uploaded_file(f):
+    with open('some/file/name.txt', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
+
 class StudentEditForm(forms.ModelForm):
     is_received_visa = forms.BooleanField(required=False)
     is_fulltime_student = forms.BooleanField(required=False)
@@ -56,6 +62,10 @@ class StudentEditForm(forms.ModelForm):
             '%d %B %Y',
             '%d %B, %Y']
     )
+    file_field = forms.FileField(
+        required=False,
+        widget=forms.ClearableFileInput(attrs={'multiple': True}),
+    )
 
     class Meta:
         model = Students
@@ -87,6 +97,11 @@ class StudentEditForm(forms.ModelForm):
 
 
 class StudentDetailsForm(forms.ModelForm):
+    file_field = forms.FileField(
+        required=False,
+        widget=forms.ClearableFileInput(attrs={'multiple': True}),
+    )
+
     class Meta:
         model = Students
         exclude = ['user']

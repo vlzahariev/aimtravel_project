@@ -7,6 +7,7 @@ from aimtravel_project.user_profile.models import Students, Employee
 class StudentsAdmin(admin.ModelAdmin):
     list_display = ['user', 'first_name', 'last_name', 'bg_personal_number', 'university']
     list_filter = ['university']
+    sortable_by = ['university', 'first_name']
 
 
 @admin.register(Employee)

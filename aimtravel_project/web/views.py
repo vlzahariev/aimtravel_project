@@ -1,14 +1,13 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
-from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
 
 from aimtravel_project.user_profile.models import Employee
 from aimtravel_project.web.forms import JobOfferDetailForm, CompanyDetailForm, CompanyEditForm, PriceDetailForm, \
-    ServiceDetailForm, ContactForm
+    ServiceDetailForm
 from aimtravel_project.web.models import JobOffer, Prices, AdditionalServices, Company
 
 
@@ -23,6 +22,10 @@ def index(request):
 
 def admin_panel(request):
     return render(request, template_name='admin_panel.html')
+
+
+def error_404(request, exception):
+    return render(request, '404.html')
 
 
 class CreateOfferView(LoginRequiredMixin, UserPassesTestMixin, views.CreateView):
@@ -121,7 +124,7 @@ class DeletePriceView(LoginRequiredMixin, UserPassesTestMixin, views.DeleteView)
     success_url = reverse_lazy('prices')
 
     def test_func(self):
-        return self.request.user.is_staff
+        return self.request.user.is_superuser
 
 
 class CreateServiceView(LoginRequiredMixin, UserPassesTestMixin, views.CreateView):
@@ -131,7 +134,7 @@ class CreateServiceView(LoginRequiredMixin, UserPassesTestMixin, views.CreateVie
     success_url = reverse_lazy('show additional services')
 
     def test_func(self):
-        return self.request.user.is_superuser
+        return self.request.user.is_staff
 
 
 class DisplayAdditionalServicesView(views.ListView):
@@ -229,25 +232,3 @@ class DeleteCompanyView(LoginRequiredMixin, UserPassesTestMixin, views.DeleteVie
     def test_func(self):
         return self.request.user.is_staff
 
-
-def contact(request):
-    if request.method == "POST":
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            subject = "Website Inquiry"
-            body = {
-                'name': form.cleaned_data['name'],
-                'email': form.cleaned_data['email'],
-                'subject': form.cleaned_data['subject'],
-                'message': form.cleaned_data['message'],
-            }
-            message = "\n".join(body.values())
-
-            try:
-                send_mail(subject, message, 'admin@example.com', ['admin@example.com'])
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-            return redirect("index")
-
-        form = ContactForm()
-        return render(request, "base.html", {'form': form})

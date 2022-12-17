@@ -1,12 +1,10 @@
 from django.urls import path, include
 
-from aimtravel_project.web import views
 from aimtravel_project.web.views import *
 
 urlpatterns = (
     path('', index, name='index'),
     path('admin_panel/', admin_panel, name='admin panel'),
-    path('contact/', contact, name='contact'),
     path('offer/', include([
         path('add/', CreateOfferView.as_view(), name='add offer'),
         path('offers/', DisplayOfferView.as_view(), name='offers'),
@@ -37,3 +35,5 @@ urlpatterns = (
         path('delete/<int:pk>/', DeleteCompanyView.as_view(), name='delete employer'),
     ])),
 )
+
+

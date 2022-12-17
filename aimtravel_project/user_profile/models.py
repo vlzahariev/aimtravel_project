@@ -1,11 +1,19 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from aimtravel_project.user_profile.validators import only_letters, only_digits
 
 UserModel = get_user_model()
 
 
 class Students(models.Model):
+    MAX_NAME_LENGTH = 15
+
+    @staticmethod
+    def file_dir(pk, b):
+        user = Students.objects.get(pk=pk)
+        return f"files/{user.pk}"
+
     user = models.OneToOneField(
         UserModel,
         primary_key=True,
@@ -13,14 +21,14 @@ class Students(models.Model):
     )
 
     first_name = models.CharField(
+        validators=(only_letters,),
         max_length=15,
         verbose_name='Име',
         blank=True,
         null=True,
-        default='',
     )
     middle_name = models.CharField(
-        default="",
+        validators=(only_letters,),
         max_length=15,
         verbose_name='Презиме',
         blank=True,
@@ -28,11 +36,11 @@ class Students(models.Model):
 
     )
     last_name = models.CharField(
+        validators=(only_letters,),
         max_length=15,
         verbose_name='Фамилия',
         blank=True,
         null=True,
-        default='',
     )
     date_of_birth = models.DateField(
         verbose_name='Дата на раждане',
@@ -41,61 +49,57 @@ class Students(models.Model):
         null=True,
     )
     place_of_birth = models.CharField(
+        validators=(only_letters,),
         verbose_name='Място на раждане',
         max_length=15,
         blank=True,
         null=True,
-        default='',
     )
     city = models.CharField(
         verbose_name='Град',
         max_length=15,
         blank=True,
         null=True,
-        default='',
     )
     province = models.CharField(
         verbose_name='Област',
         max_length=15,
         blank=True,
         null=True,
-        default='',
     )
     street = models.CharField(
         verbose_name='Улица/ж.к.',
         max_length=30,
         blank=True,
         null=True,
-        default='',
     )
     bg_personal_number = models.CharField(
+        validators=(only_digits,),
         max_length=15,
         verbose_name='ЕГН',
         blank=True,
         null=True,
-        default='',
     )
     nationality = models.CharField(
+        validators=(only_letters,),
         verbose_name='Националност',
         max_length=15,
         blank=True,
         null=True,
-        default='',
     )
     country_of_birth = models.CharField(
         verbose_name='Държава на раждане',
         max_length=15,
         blank=True,
         null=True,
-        default='',
     )
 
     id_passport_number = models.CharField(
+        validators=(only_digits,),
         verbose_name='Номер на паспорт',
         max_length=15,
         blank=True,
         null=True,
-        default='',
     )
     passport_date_of_issue = models.DateField(
         verbose_name='Дата на издаване',
@@ -108,38 +112,37 @@ class Students(models.Model):
         null=True,
     )
     phone = models.CharField(
+        validators=(only_digits,),
         verbose_name='Телефон',
         max_length=15,
         blank=True,
         null=True,
-        default='',
     )
     email = models.CharField(
         verbose_name='E-mail',
         max_length=40,
         blank=True,
         null=True,
-        default='',
     )
     university = models.CharField(
+        validators=(only_letters,),
         verbose_name='Университет',
         max_length=30,
         blank=True,
         null=True,
-        default='',
     )
     year_of_education = models.PositiveIntegerField(
-        default='',
+        default=1,
         verbose_name='Курс',
         blank=True,
         null=True,
     )
     foreign_university = models.CharField(
+        validators=(only_letters,),
         verbose_name='Чуждестранен университет',
         max_length=15,
         blank=True,
         null=True,
-        default='',
     )
     is_fulltime_student = models.BooleanField(
         verbose_name='Студент "Редовно обучение"',
@@ -148,7 +151,6 @@ class Students(models.Model):
     )
     search_job_pref = models.CharField(
         verbose_name='Предпочитана работа',
-        default='',
         max_length=15,
         blank=True,
         null=True,
@@ -158,13 +160,19 @@ class Students(models.Model):
         max_length=15,
         blank=True,
         null=True,
-        default='',
     )
     visa_photo = models.URLField(
         verbose_name='Снимка за ВИЗА',
+        default='https://cdn5.vectorstock.com/i/1000x1000/54/34/a-student-boy-cartoon-character-isolated-on-white-vector-36115434.jpg',
+
         max_length=200,
         blank=True,
         null=True,
+    )
+    file_field = models.FileField(
+        upload_to='files/%Y-%m-%d',
+        null=True,
+        blank=True,
     )
 
     def __str__(self):
@@ -183,11 +191,13 @@ class Employee(models.Model):
         on_delete=models.CASCADE,
     )
     employee_first_name = models.CharField(
+        validators=(only_letters,),
         max_length=20,
         blank=True,
         null=True,
     )
     employee_last_name = models.CharField(
+        validators=(only_letters,),
         max_length=20,
         blank=True,
         null=True,
@@ -204,6 +214,7 @@ class Employee(models.Model):
         null=True,
     )
     employee_phone = models.CharField(
+        validators=(only_digits,),
         max_length=15,
         blank=True,
         null=True,
@@ -213,26 +224,6 @@ class Employee(models.Model):
         blank=True,
         null=True,
     )
-    is_staff = models.BooleanField(
-        default=True,
-        blank=False,
-        null=False,
-    )
-
-    """
-    *edited*
-    Below signal not to be used. To avoid creating two separate instances of Employee model and Student Model 
-    to same AppUser instance, If employee user needs to be created, super user will create instance of AppUser,
-    and then manually delete automatically created Student Model, and manually create Employee Model, assigning 
-    manually the user to the model.
-
-    Above 'Signal' is placed to create 'Employee' (staff user) instance. 
-    Can be filled later by the employee/superuser. 
-    """
-    # @receiver(post_save, sender=UserModel)
-    # def create_profile(sender, instance, created, *args, **kwargs):
-    #     if created:
-    #         Employee.objects.created(user=instance)
 
 
 

@@ -42,14 +42,17 @@
                                         {% endif %}
                                     </h2>
                                 </div>
+                                <div>
+                                    {% if not user.is_authenticated %}
+                                            <li class="btn btn-primary btn-lg" style="background-color: purple"><a style="color:whitesmoke;" href="{% url 'sign up' %}">Запиши се сега</a></li>
+                                        {% endif %}
+                                </div>
                             </div>
                             <div class="col-md-9 col-sm-12 col-xs-12">
                                 <div class="menu">
                                     <ul class="nav navbar-nav">
+                                        <li><a href="{% url 'index' %}">Начало</a></li>
                                         <li><a href="{% url 'team' %}">За нас</a></li>
-                                        {% if user.is_authenticated %}
-                                            <li><a href="#sign-in">Записване</a></li>
-                                        {% endif %}
                                         <li><a href='{% url 'offers' %}'>Оферти</a></li>
                                         <li><a href="{% url 'view all employer' %}">Работодатели</a></li>
                                         <li><a href="{% url 'prices' %}">Цени</a></li>
@@ -62,6 +65,7 @@
                                             {% else %}
                                                 <li><a href="{% url 'details profile' pk=user.pk %}">Личен
                                                     профил</a></li>
+                                                <li><a href="{% url 'change password' %}">Смяна на парола</a></li>
                                             {% endif %}
                                             {% if user.is_staff %}
                                                 <li><a href="{% url 'admin panel' %}">Админ Панел</a></li>
@@ -114,23 +118,30 @@
                 <div class="col-md-4 col-sm-4">
                     <div class="contact-part">
                         <h4><i class="fa fa-map-marker" aria-hidden="true"></i>Можете да ни намерите тук:</h4>
-                        <P>0313 St. Stroman Wall Apt. 503</P>
-                        <P>1130 St. Baker Street Apt. 999</P>
+                        <p>София</p>
+                        <P>Студентски Град, ул. Йордан Йосифов №2</P>
+                        <P>ул. "Георги С. Раковски" 145B</P>
+                        <br>
+                        <p>Пловдив</p>
+                        <p>ул.Антим I, №2А</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-4">
                     <div class="contact-part">
                         <h4><i class="fa fa-phone" aria-hidden="true"></i>Обадете ни се сега:</h4>
-                        <p>+14155552671</p>
-                        <p>+14589632455</p>
+                        <p>+359 884 78 38 01 - София - Студентски град</p>
+                        <p>+359 889 96 65 83 - София - Център</p>
+                        <br>
+                        <p>+359 883 55 15 62 - Пловдив</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-4">
                     <div class="contact-part">
                         <h4><i class="fa fa-envelope" aria-hidden="true"></i>Изпратете ни e-mail:</h4>
-                        <p>example@gmail.com</p>
-                        <p>example@gmail.com</p>
-                        <p></p>
+                        <p>studentski@aimtravel.bg</p>
+                        <p>sofia@aimtravel.bg</p>
+                        <br>
+                        <p>plovdiv@aimtravel.bg</p>
                     </div>
                 </div>
             </div>

@@ -6679,7 +6679,7 @@ button.list-group-item-info.active:focus {
 
 .list-group-item-warning {
     color: #8a6d3b;
-    background-color: #fcf8e3;
+    background-color: darkred;
 }
 
 a.list-group-item-warning,

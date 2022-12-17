@@ -31,6 +31,7 @@ class UserProfileView(LoginRequiredMixin, views.DetailView):
     model = Students
     template_name = 'user_profile/personal_profile.html'
     form_class = StudentDetailsForm
+    context_object_name = 'students_details'
 
 
 """
@@ -67,7 +68,7 @@ class AllUsersView(LoginRequiredMixin, UserPassesTestMixin, views.ListView):
     template_name = 'user_profile/all_students.html'
     context_object_name = 'student_list'
     ordering = 'first_name'
-    paginate_by = 2
+    paginate_by = 3
 
     def test_func(self):
         return self.request.user.is_staff
