@@ -24,4 +24,5 @@ class AdditionalServicesAdmin(admin.ModelAdmin):
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['employer_name', 'employer_city', 'employer_state']
+    list_filter = ['employer_name']

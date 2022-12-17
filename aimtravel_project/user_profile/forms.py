@@ -9,14 +9,9 @@ YES_NO_CHOICES = {
 
 """
 Below two forms are related with Student Model. 
-They keep data needed for WAT program.
+First collect data needed for WAT program.
+Second shows already saved info.
 """
-
-
-def handle_uploaded_file(f):
-    with open('some/file/name.txt', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
 
 
 class StudentEditForm(forms.ModelForm):
@@ -109,7 +104,7 @@ class StudentDetailsForm(forms.ModelForm):
 
 """
 Below two forms are related with Employee Model. 
-They keep data related to the employees - can be seen on the 'about us' page.
+They collect data related to the employees, that can be seen on the 'about us' page and 'employee profile' page as well.
 """
 
 

@@ -12,7 +12,7 @@ UserModel = get_user_model()
 """
 Following two views are related to User Details page and functionality for editing regular(students) user Details.
 All logged in users will be able to reach this page. 
-"Staff" members will be able to reach this page as well typing the URL of the page.
+"Staff" members will be able to reach this page as well using Admin panel page.
 """
 
 
